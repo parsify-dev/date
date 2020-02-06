@@ -1,0 +1,81 @@
+{
+    "name": "@parsify/date",
+    "version": "0.0.3",
+    "description": "Parsify plugin for date & time parsing",
+    "main": "dist/index.js",
+    "module": "dist/index.esm.js",
+    "types": "dist/index.d.ts",
+    "files": [
+        "dist/**/*"
+    ],
+    "author": "Antoni Kepinski <a@kepinski.me> (https://kepinski.me)",
+    "bugs": {
+        "url": "https://github.com/parsify/date/issues"
+    },
+    "scripts": {
+        "prebuild": "del-cli dist",
+        "esm": "tsc --module esnext && cpy dist/index.js dist --rename index.esm.js",
+        "cjs": "tsc --module commonjs",
+        "build": "npm run esm && npm run cjs",
+        "test": "xo && nyc ava",
+        "prepublishOnly": "npm run build"
+    },
+    "engines": {
+        "node": ">=10"
+    },
+    "license": "MIT",
+    "repository": "parsify/date",
+    "homepage": "https://github.com/parsify/date",
+    "keywords": [
+        "parsify",
+        "@parsify/date",
+        "parsify-plugin",
+        "plugin",
+        "expression-parser",
+        "parser",
+        "expression",
+        "date",
+        "time",
+        "date.js",
+        "date-parsing",
+        "time-parsing",
+        "date-time"
+    ],
+    "devDependencies": {
+        "@akepinski/tsconfig": "0.0.2",
+        "@typescript-eslint/eslint-plugin": "^2.19.0",
+        "@typescript-eslint/parser": "^2.19.0",
+        "ava": "^3.2.0",
+        "coveralls": "^3.0.9",
+        "cpy-cli": "^3.0.0",
+        "date-fns": "^2.9.0",
+        "del-cli": "^3.0.0",
+        "eslint-config-xo-typescript": "^0.26.0",
+        "nyc": "^15.0.0",
+        "ts-node": "^8.6.2",
+        "typescript": "^3.7.5",
+        "xo": "^0.25.3"
+    },
+    "sideEffects": false,
+    "ava": {
+        "extensions": [
+            "ts"
+        ],
+        "require": [
+            "ts-node/register"
+        ]
+    },
+    "xo": {
+        "extends": "xo-typescript",
+        "extensions": [
+            "ts"
+        ],
+        "ignores": [
+            "./test.ts",
+            "./index.d.ts"
+        ]
+    },
+    "dependencies": {
+        "@akepinski/date.js": "^0.4.0"
+    }
+}
