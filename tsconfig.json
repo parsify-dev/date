@@ -9,11 +9,11 @@
             "es2018"
 		]
 	},
-	"files": [
+	"include": [
 		"src/**/*",
 		"test.ts"
 	],
-	"include": [
-		"src/**/*"
+	"exclude": [
+		"test.ts"
 	]
 }
