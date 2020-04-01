@@ -1,5 +1,5 @@
 {
-	"extends": "@akepinski/tsconfig",
+	"extends": "@sindresorhus/tsconfig",
 	"compilerOptions": {
 		"outDir": "dist",
 		"target": "es2018",
@@ -9,6 +9,10 @@
             "es2018"
 		]
 	},
+	"files": [
+		"src/**/*",
+		"test.ts"
+	],
 	"include": [
 		"src/**/*"
 	]

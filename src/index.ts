@@ -1,14 +1,15 @@
 // @ts-ignore
-import date from '@akepinski/date.js';
+import * as create from 'sugar/date/create';
 
 import formatDate from './utils/format-date';
 
 export default () => async (expression: string): Promise<string> => {
-	if (/minutes?|from|last|months?|days?|today|next|weeks?|hours?|pm|am|monday|tuesday|wednesday|thursday|friday|saturday|sunday|night/.exec(expression)) {
-		const result = date(expression);
+	const result = create(expression);
+	const formatted = formatDate(result);
 
-		return formatDate(result);
+	if (formatted === 'invalid' || formatted.includes('NaN')) {
+		return expression;
 	}
 
-	return expression;
+	return formatted;
 };

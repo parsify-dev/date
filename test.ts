@@ -2,11 +2,19 @@ import test from 'ava';
 import {lightFormat, addDays} from 'date-fns';
 
 import parsifyDatePlugin from './src';
+import formatDate from './src/utils/format-date';
 
 test('general', async t => {
-	const result = await parsifyDatePlugin()('today + 17 days');
+	const result = await parsifyDatePlugin()('17 days from now');
 
-	t.is(result, lightFormat(addDays(new Date(), 17), 'MM/dd/yyyy'));
+	t.is(result, lightFormat(addDays(new Date(), 17), 'MM/dd/yyyy HH:mm'));
+});
+
+test('formats minutes correctly', t => {
+	const fakeDate = new Date('Wed Apr 01 2020 21:05:44 GMT+0200 (Central European Summer Time)');
+	const result = formatDate(fakeDate);
+
+	t.is(result, '04/01/2020 21:05');
 });
 
 test('if an error occurs, just output the expression', async t => {
