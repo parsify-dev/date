@@ -4,11 +4,7 @@ export default function formatDate(date: Date): string {
 	const day = date.getDate().toString().padStart(2, '0');
 	const hours = date.getHours();
 	const minutes = date.getMinutes();
-	const formattedMinutes = Math.ceil(Math.log10(minutes + 1)) === 1 ? minutes.toString().padStart(2, '0') : minutes;
-
-	if (formattedMinutes === 0) {
-		return 'invalid';
-	}
+	const formattedMinutes = minutes.toString().length === 1 ? minutes.toString().padStart(2, '0') : minutes;
 
 	return `${month}/${day}/${year} ${hours}:${formattedMinutes}`;
 }
