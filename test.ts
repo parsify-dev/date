@@ -5,7 +5,7 @@ import parsifyDatePlugin from './src';
 import formatDate from './src/utils/format-date';
 
 test('general', async t => {
-	const result = await parsifyDatePlugin()('today + 17 days');
+	const result = await parsifyDatePlugin()('17 days from now');
 
 	if (result.includes(lightFormat(addDays(new Date(), 17), 'MM/dd/yyyy'))) {
 		t.pass();

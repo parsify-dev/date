@@ -1,15 +1,16 @@
-// @ts-ignore
-import * as date from '@akepinski/date.js';
+// @ts-expect-error
+import * as sherlock from 'sherlockjs';
 
 import formatDate from './utils/format-date';
 
 export default () => async (expression: string): Promise<string> => {
-	if (/minutes?|from|last|months?|days?|today|next|weeks?|hours?|pm|am|monday|tuesday|wednesday|thursday|friday|saturday|sunday|night/.exec(expression)) {
-		const result = date(expression);
-		const formatted = formatDate(result);
+	const result = sherlock.parse(expression);
 
-		return formatted;
+	if (!result.startDate || expression.length < 3) {
+		return expression;
 	}
 
-	return expression;
+	const formatted = formatDate(result.startDate);
+
+	return formatted;
 };
