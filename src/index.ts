@@ -3,14 +3,19 @@ import * as sherlock from 'sherlockjs';
 
 import formatDate from './utils/format-date';
 
-export default () => async (expression: string): Promise<string> => {
-	const result = sherlock.parse(expression);
+const allowed = /minutes?|from|last|months?|days?|today|next|weeks?|hours?|pm|am|monday|tuesday|wednesday|thursday|friday|saturday|sunday|night|morning|january|february|march|april|may|june|july|august|september|october|november|december/;
+const banned = / in | to |\+|-|\/|\*/;
 
-	if (!result.startDate || expression.length < 3) {
-		return expression;
+export default () => async (expression: string): Promise<string> => {
+	if (allowed.exec(expression) && !banned.exec(expression)) {
+		const result = sherlock.parse(expression);
+
+		if (!result.startDate) {
+			return expression;
+		}
+
+		return formatDate(result.startDate);
 	}
 
-	const formatted = formatDate(result.startDate);
-
-	return formatted;
+	return expression;
 };
