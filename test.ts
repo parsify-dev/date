@@ -29,6 +29,7 @@ test('if the provided date format is invalid, fallback to default', async t => {
 
 test('if an error occurs, just output the expression', async t => {
 	t.is(await parsifyDatePlugin()('foo / bar'), 'foo / bar');
+	t.is(await parsifyDatePlugin()('round(1 month in days)'), 'round(1 month in days)');
 	t.is(await parsifyDatePlugin()('1+2'), '1+2');
 	t.is(await parsifyDatePlugin()('3'), '3');
 	t.is(await parsifyDatePlugin()('fasdfasfasftodayadffdas'), 'fasdfasfasftodayadffdas');
